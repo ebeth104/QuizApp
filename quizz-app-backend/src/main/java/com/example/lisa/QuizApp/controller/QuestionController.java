@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("question")
+@RequestMapping("api/question")
+@CrossOrigin(origins="http://localhost:5173")
 public class QuestionController {
 
     @Autowired
@@ -17,6 +18,7 @@ public class QuestionController {
 
     @GetMapping("allQuestions")
     public ResponseEntity<List<Question>> getAllQuestions(){
+        System.out.println("**All Questions**");
         return questionService.getAllQuestions();
     }
 
@@ -30,5 +32,16 @@ public class QuestionController {
         return questionService.addQuestion(question);
 
     }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteQuestion(@PathVariable int id){
+        return questionService.deleteQuestion(id);
+    }
+
+    @PutMapping("update/{id}")
+    public ResponseEntity<String> updateQuestion(@PathVariable int id, @RequestBody Question question){
+        return questionService.updateQuestion(id, question);
+    }
+
 
 }
