@@ -47,13 +47,13 @@ public class QuestionController {
             throw new ChangeSetPersister.NotFoundException();
     }
 
-    @PutMapping("/{id}/update")
+    @PutMapping("question/update/{id}")
     public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question question) throws ChangeSetPersister.NotFoundException {
         Question updatedQuestion = questionService.updateQuestion(id, question);
         return ResponseEntity.ok(updatedQuestion);
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/question/delete/{id}")
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id)
     {
         questionService.deleteQuestion(id);
@@ -67,7 +67,7 @@ public class QuestionController {
         return ResponseEntity.ok(categories);
     }
 
-    @GetMapping("/fetch-questions-for-user")
+    @GetMapping("/quiz/fetch-questions-for-user")
     public ResponseEntity<List<Question>> getQuestionsForUser(@RequestParam Integer numQ, @RequestParam String category)
     {
         List<Question> questions = questionService.getQuestionsForUser(numQ, category);
