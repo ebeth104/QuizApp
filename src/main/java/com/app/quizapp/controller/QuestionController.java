@@ -19,7 +19,7 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("api/quizzes")
+@RequestMapping("/api/quizzes")
 @RequiredArgsConstructor
 public class QuestionController {
     private final IQuestionService questionService;
